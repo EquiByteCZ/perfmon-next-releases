@@ -80,7 +80,9 @@ On **each target machine**:
 
 Hyper-V (and Cluster CSV) counters exist only when those roles are installed on the target. A missing counter is reported on that machine and the others continue.
 
-When you select a remote multi-instance set such as **Hyper-V Hypervisor Logical Processor**, PerfMon Next loads counters and instances from a fresh category sample. A bulk catalog query often returns empty instance lists for those sets, which used to leave the Counters list blank.
+When you select a remote multi-instance set such as **Hyper-V Hypervisor Logical Processor**, PerfMon Next enumerates instances with several methods: a fresh category sample (`ReadCategory`), PDH `PdhEnumObjectItems` after a refresh, and `GetInstanceNames`. A bulk catalog query often returns empty instance lists for those sets.
+
+If a multi-instance set still has no instances after that, the app shows an error and a **Retry** button instead of treating the set as single-instance. When `_Total` is available, that instance is selected by default. If a sample cannot be read, the series row shows the error instead of a silent "—".
 
 ## Export and import
 
