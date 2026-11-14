@@ -2,11 +2,16 @@
 
 PerfMon Next is a Windows desktop app for watching performance counters on one computer or across several machines at once — for example the nodes of a Windows Server or Azure Local cluster. It is a modern replacement for Performance Monitor (perfmon), with a dark workspace, a searchable counter picker, live charts, and a table of last / min / max / average values.
 
-This repository holds **public documentation and signed releases**. The source code lives in a private EquiByte repository.
+This repository holds **public documentation and signed releases** only. The source code is not published.
 
 ## Features
 
 - Live charts grouped by counter, by machine, or combined, plus a series table (last, min, max, average, scale)
+- **Table only** mode that turns the charts off and keeps the series report updating, handy with many series
+- Compact chart legend (up to 6 entries plus "+N more") that you can switch off, a readable time axis, and **Reset** to return to the live view
+- Bulk work in the series table: multi-select rows, then **Hide**, **Show**, **Show only**, or **Remove** them (also on the right-click menu; **Space** toggles, **Delete** removes)
+- Bulk selection in the picker: **All** / **None**, Shift-click ranges, **Ctrl+A**, and an instance filter
+- Type a **cluster name** in Add machine and every node of that failover cluster is added automatically
 - Searchable counter picker with explain text, a built-in starter catalog, and **Add path** for pasted PerfMon-style paths
 - Several machines in one workspace, optional alternate credentials (passwords stay on this PC, never in the workspace file)
 - Workspace files you can save and reopen, CSV export/import, and import of Performance Monitor `.blg` logs
@@ -47,7 +52,7 @@ See the [user guide](docs/user-guide.md) for a walkthrough with screenshots.
 
 ## Adding remote machines
 
-Use **Add** in the Machines list. Host can be a computer name or IP address. `.` means this computer. **Test** reads `Memory\Available MBytes` and shows online, access denied, or offline on that row.
+Use **Add** in the Machines list. Host can be a computer name or IP address. `.` means this computer. If the name is a Windows failover cluster (for example an Azure Local or Hyper-V cluster name), PerfMon Next reads the cluster's node list and adds every node instead of the cluster name; a node name or an ordinary server is added as typed. The node list is read over WMI (`root\MSCluster`) with the same credentials. If it cannot be read, the typed host is added on its own and the status bar says why. **Test** reads `Memory\Available MBytes` and shows online, access denied, or offline on that row.
 
 The app reads as the signed-in user unless you tick **Different credentials**. The password is kept in memory for the session. **Remember on this PC** stores it with DPAPI under `%AppData%\PerfMonNext\credentials.json`. Workspace JSON never contains a password; if one is present it is ignored.
 
@@ -94,22 +99,6 @@ If a multi-instance set still has no instances after that, the app shows an erro
 | `.blg` | On Windows, PerfMon Next runs `relog.exe file.blg -f CSV -o file.csv -y` and imports that CSV. |
 
 Use **Export CSV**, **Import**, and **Open** / **Save** in the toolbar, or **Ctrl+O** / **Ctrl+S** for workspaces.
-
-## Build from source
-
-The source repository is private. Contributors with access can clone it and, on Windows:
-
-```powershell
-.\build.ps1
-```
-
-Or run from source:
-
-```powershell
-dotnet run --project src\PerfMonNext.App -c Release
-```
-
-That requires the .NET 8 SDK. The UI has to be run on Windows. On Linux or macOS, `./build.sh` compiles and runs unit tests only (the Windows project cross-compiles with `EnableWindowsTargeting`).
 
 ## License
 
