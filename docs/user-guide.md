@@ -36,6 +36,7 @@ Select several rows with Shift-click or Ctrl-click (or **Ctrl+A**), then use the
 - **Show only** (**Show only these** in the menu): show the selection and hide every other series.
 - **Show all**: make every series visible again.
 - **Remove**: stop collecting the selected series.
+- **Remove all**: remove every counter and series at once and untick everything in the picker, so you can start a fresh selection. The machines list is not changed. If more than three series would go, PerfMon Next asks first.
 
 Keys in the table: **Space** toggles the selection (if any selected series is visible, they are all hidden; otherwise they are all shown) and **Delete** removes it. Click the color swatch to cycle a series color, and type into **Scale** to set a display factor.
 

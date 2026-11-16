@@ -9,7 +9,7 @@ This repository holds **public documentation and signed releases** only. The sou
 - Live charts grouped by counter, by machine, or combined, plus a series table (last, min, max, average, scale)
 - **Table only** mode that turns the charts off and keeps the series report updating, handy with many series
 - Compact chart legend (up to 6 entries plus "+N more") that you can switch off, a readable time axis, and **Reset** to return to the live view
-- Bulk work in the series table: multi-select rows, then **Hide**, **Show**, **Show only**, or **Remove** them (also on the right-click menu; **Space** toggles, **Delete** removes)
+- Bulk work in the series table: multi-select rows, then **Hide**, **Show**, **Show only**, or **Remove** them (also on the right-click menu; **Space** toggles, **Delete** removes), or **Remove all** to start over with the same machines
 - Bulk selection in the picker: **All** / **None**, Shift-click ranges, **Ctrl+A**, and an instance filter
 - Type a **cluster name** in Add machine and every node of that failover cluster is added automatically
 - Searchable counter picker with explain text, a built-in starter catalog, and **Add path** for pasted PerfMon-style paths
