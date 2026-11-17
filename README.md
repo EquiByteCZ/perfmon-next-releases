@@ -8,7 +8,8 @@ This repository holds **public documentation and signed releases** only. The sou
 
 - Live charts grouped by counter, by machine, or combined, plus a series table (last, min, max, average, scale)
 - **Table only** mode that turns the charts off and keeps the series report updating, handy with many series
-- Compact chart legend (up to 6 entries plus "+N more") that you can switch off, a readable time axis, and **Reset** to return to the live view
+- Grafana-style charts: a crosshair with a hover card showing the time and every series' real value (K/M/G with units), a Y axis that starts at 0, compact K/M/G ticks, and a legend with last and max
+- Compact chart legend (up to 6 entries plus "+N more") that you can switch off, a readable time axis, and **Reset** to put every chart back to the default view
 - Bulk work in the series table: multi-select rows, then **Hide**, **Show**, **Show only**, or **Remove** them (also on the right-click menu; **Space** toggles, **Delete** removes), or **Remove all** to start over with the same machines
 - Bulk selection in the picker: **All** / **None**, Shift-click ranges, **Ctrl+A**, and an instance filter
 - Type a **cluster name** in Add machine and every node of that failover cluster is added automatically
@@ -42,7 +43,7 @@ The released ZIP is self-contained. You do not need to install the .NET 8 deskto
 1. Download and unzip the release, then start `PerfMonNext.exe`.
 2. A default **Local overview** workspace is already set up with this computer (`.`) and three counters: `Processor\% Processor Time` (`_Total`), `Memory\Available MBytes`, and `System\Processor Queue Length`.
 3. Press **Start** (or **F5**). The first sample of a rate counter is discarded, so values typically appear on the second interval (about one more second at the default 1 s interval).
-4. Use **Follow** to keep the time axis on the latest samples. Turn it off to pan (drag) and zoom (mouse wheel). **Fit scales** picks a power-of-ten factor so each series sits near 10–100; CSV export still stores raw values.
+4. Point at a chart to see the time and the value of every series under the crosshair. Use **Follow** to keep the time axis on the latest samples; turn it off to pan (drag) and zoom (mouse wheel). **Reset** returns every chart to the default view. **Fit scales** helps when one chart mixes big and small series (see the [user guide](docs/user-guide.md#fit-scales-and-reset)). CSV export always stores raw values.
 5. Add more counters from the picker on the left, or paste a path such as `\Processor(_Total)\% Processor Time` and click **Add path**.
 6. **Ctrl+S** saves the workspace, **Ctrl+O** opens one.
 

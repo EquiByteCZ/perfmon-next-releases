@@ -18,9 +18,25 @@ Keyboard shortcuts:
 
 A new session starts with a **Local overview** workspace: this computer (`.`) and `Processor\% Processor Time` (`_Total`), `Memory\Available MBytes`, and `System\Processor Queue Length`. Press **Start** or **F5**. Rate counters show a value on the second interval.
 
-**Follow** keeps the time axis on the latest samples. Turn it off, then drag to pan and use the wheel to zoom. **Reset** (next to **Fit scales**) drops your zoom and pan on every chart and turns **Follow** back on. **Fit scales** picks a power-of-ten factor so each series lands near 10–100. The scale is for display only; CSV export stores raw values.
+**Follow** keeps the time axis on the latest samples. Turn it off, then drag to pan and use the wheel to zoom.
 
-**Legend** shows a compact legend to the right of each chart: up to six entries, then "+N more". Uncheck it to hide the legend on every chart; the colors stay visible in the series table.
+The Y axis starts at 0 for counters that never go negative, with a little headroom above the peak. It only goes below 0 when a series really has negative values. Large values are labelled compactly (for example 250K or 1.2G).
+
+### Hover
+
+![Crosshair and hover card on a live chart](screenshots/hover-tooltip.png)
+
+Point at a chart and a dashed crosshair follows the mouse. A card shows the sample time and, for every series on that chart, its color, name, and value at the nearest sample. Values are always real (never scaled). Numbers under 10,000 are shown in full; bigger ones are shown compactly, followed by the full number, for example `12.3M B/s (12,345,678)`. A unit is added when the counter name implies one (`B/s` for Bytes/sec, `%`, `MB`, `/s`). The card snaps to the nearest sample, so if you point at a gap before the first sample it shows that first sample and its time.
+
+### Fit scales and Reset
+
+Each series has a display **Scale** factor (default 1). It only changes how the line is drawn. The series table, the hover card, and CSV export always show real values.
+
+**Fit scales** is for charts that mix series of very different size, for example a busy and an idle network adapter in one chart. It magnifies the smaller series by a power of ten (×10, ×1000, …) so they are visible next to the largest one, which stays ×1 so the axis keeps real units. A chart with one series, or with series within 10× of each other, is not changed, and the status bar says so. A scaled series shows its factor in two places: the legend (for example `node01 ×1000`) and the highlighted **Scale** column. You can also type a factor there, such as `0.001` or `1e-6`.
+
+**Reset** puts everything back to the default view: every scale factor back to 1, every hidden series shown again, zoom and pan cleared (Y from 0 again), and **Follow** turned on. It does not remove series or machines.
+
+**Legend** shows a compact legend to the right of each chart: up to six entries, each with its last and max value, then "+N more". Uncheck it to hide the legend on every chart; the colors stay visible in the series table.
 
 **Charts → Table only** turns the charts off and gives the whole right pane to the series table. Sampling, statistics, and CSV export keep working. Use it when you watch many counters and only need the numbers. Pick a grouping again to bring the charts back.
 
@@ -38,7 +54,7 @@ Select several rows with Shift-click or Ctrl-click (or **Ctrl+A**), then use the
 - **Remove**: stop collecting the selected series.
 - **Remove all**: remove every counter and series at once and untick everything in the picker, so you can start a fresh selection. The machines list is not changed. If more than three series would go, PerfMon Next asks first.
 
-Keys in the table: **Space** toggles the selection (if any selected series is visible, they are all hidden; otherwise they are all shown) and **Delete** removes it. Click the color swatch to cycle a series color, and type into **Scale** to set a display factor.
+Keys in the table: **Space** toggles the selection (if any selected series is visible, they are all hidden; otherwise they are all shown) and **Delete** removes it. Click the color swatch to cycle a series color, and type into **Scale** to set a display factor (see [Fit scales and Reset](#fit-scales-and-reset)).
 
 ## Counter picker
 
